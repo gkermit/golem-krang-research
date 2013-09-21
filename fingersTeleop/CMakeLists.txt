@@ -13,15 +13,11 @@ endif()
 # Link to somatic, amino and ach
 # NOTE: Ideally we would like to 'find' these packages but for now, we assume they are either 
 # in /usr/lib or /usr/local/lib
-link_libraries(protobuf-c amino ach kore somatic filter stdc++ ncurses)
+link_libraries(protobuf-c lapack blas amino ach somatic filter stdc++ ncurses)
 
 # Include Eigen
-#include_directories(/usr/local/include/eigen3)
-#include_directories(/usr/include/eigen3)
-
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-find_package(Eigen3 REQUIRED)
-include_directories(EIGEN3_INCLUDE_DIR)
+include_directories(/usr/local/include/eigen3)
+include_directories(/usr/include/eigen3)
 
 # Include the project files and the common helpers for all the experiments
 include_directories(src)
