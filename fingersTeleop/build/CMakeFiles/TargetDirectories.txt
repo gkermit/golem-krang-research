@@ -1,2 +1,2 @@
-/home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles/01-printLiberty.dir
-/home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles/01-printLiberty.run.dir
+/home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles/01-printLiberty.dir
+/home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles/01-printLiberty.run.dir

@@ -31,17 +31,11 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
-# Escaping for special characters.
-EQUALS = =
-
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gtracy/Documents/research/fingersTeleop
+CMAKE_SOURCE_DIR = /home/gtracy/Desktop/research/fingersTeleop
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gtracy/Documents/research/fingersTeleop/build
+CMAKE_BINARY_DIR = /home/gtracy/Desktop/research/fingersTeleop/build
 
 # Utility rule file for 01-printLiberty.run.
 
@@ -64,6 +58,6 @@ CMakeFiles/01-printLiberty.run.dir/clean:
 .PHONY : CMakeFiles/01-printLiberty.run.dir/clean
 
 CMakeFiles/01-printLiberty.run.dir/depend:
-	cd /home/gtracy/Documents/research/fingersTeleop/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gtracy/Documents/research/fingersTeleop /home/gtracy/Documents/research/fingersTeleop /home/gtracy/Documents/research/fingersTeleop/build /home/gtracy/Documents/research/fingersTeleop/build /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles/01-printLiberty.run.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gtracy/Desktop/research/fingersTeleop/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gtracy/Desktop/research/fingersTeleop /home/gtracy/Desktop/research/fingersTeleop /home/gtracy/Desktop/research/fingersTeleop/build /home/gtracy/Desktop/research/fingersTeleop/build /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles/01-printLiberty.run.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/01-printLiberty.run.dir/depend
 

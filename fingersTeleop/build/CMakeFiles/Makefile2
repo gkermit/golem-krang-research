@@ -43,17 +43,11 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
-# Escaping for special characters.
-EQUALS = =
-
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gtracy/Documents/research/fingersTeleop
+CMAKE_SOURCE_DIR = /home/gtracy/Desktop/research/fingersTeleop
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gtracy/Documents/research/fingersTeleop/build
+CMAKE_BINARY_DIR = /home/gtracy/Desktop/research/fingersTeleop/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/01-printLiberty.dir
@@ -62,7 +56,7 @@ CMAKE_BINARY_DIR = /home/gtracy/Documents/research/fingersTeleop/build
 CMakeFiles/01-printLiberty.dir/all:
 	$(MAKE) -f CMakeFiles/01-printLiberty.dir/build.make CMakeFiles/01-printLiberty.dir/depend
 	$(MAKE) -f CMakeFiles/01-printLiberty.dir/build.make CMakeFiles/01-printLiberty.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles  1
 	@echo "Built target 01-printLiberty"
 .PHONY : CMakeFiles/01-printLiberty.dir/all
 
@@ -72,9 +66,9 @@ all: CMakeFiles/01-printLiberty.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/01-printLiberty.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/01-printLiberty.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles 0
 .PHONY : CMakeFiles/01-printLiberty.dir/rule
 
 # Convenience name for target.
@@ -97,15 +91,15 @@ clean: CMakeFiles/01-printLiberty.dir/clean
 CMakeFiles/01-printLiberty.run.dir/all: CMakeFiles/01-printLiberty.dir/all
 	$(MAKE) -f CMakeFiles/01-printLiberty.run.dir/build.make CMakeFiles/01-printLiberty.run.dir/depend
 	$(MAKE) -f CMakeFiles/01-printLiberty.run.dir/build.make CMakeFiles/01-printLiberty.run.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles 
 	@echo "Built target 01-printLiberty.run"
 .PHONY : CMakeFiles/01-printLiberty.run.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/01-printLiberty.run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/01-printLiberty.run.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles 0
 .PHONY : CMakeFiles/01-printLiberty.run.dir/rule
 
 # Convenience name for target.
