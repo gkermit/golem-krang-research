@@ -46,7 +46,7 @@ Eigen::Vector3d matrixToEuler(Matrix3d& m) {
 }   
 
 /* ********************************************************************************************* */
-bool getLiberty(Eigen::VectorXd& config, Eigen::VectorXd& config2) {
+bool getLiberty(Eigen::VectorXd& config, Eigen::VectorXd& config2, Eigen::VectorXd& config3, Eigen::VectorXd& config4) {
 
 	// Get the data
 	int r = 0;
@@ -58,9 +58,13 @@ bool getLiberty(Eigen::VectorXd& config, Eigen::VectorXd& config2) {
 	// Set the values for the position
 	Somatic__Vector* s1 = l_msg->sensor1;
 	Somatic__Vector* s2 = l_msg->sensor2;
+	Somatic__Vector* s3 = l_msg->sensor3;
+	Somatic__Vector* s4 = l_msg->sensor4;
 
 	config << s1->data[0], -s1->data[1], -s1->data[2], 0.0, 0.0, 0.0;
 	config2 << s2->data[0], -s2->data[1], -s2->data[2], 0.0, 0.0, 0.0;
+	config3 << s3->data[0], -s3->data[1], -s3->data[2], 0.0, 0.0, 0.0;
+	config4 << s4->data[0], -s4->data[1], -s4->data[2], 0.0, 0.0, 0.0;
 
 	// Convert from a quaternion to rpy representation
 
@@ -75,6 +79,19 @@ bool getLiberty(Eigen::VectorXd& config, Eigen::VectorXd& config2) {
 	Eigen::Matrix3d oriM2 = oriQ2.matrix();
 	Eigen::Vector3d oriE2 = matrixToEuler(oriM2);
 	config2.bottomLeftCorner<3,1>() << -oriE2[2], -oriE2[1], oriE2[0];
+
+	//s3
+	Eigen::Quaternion <double> oriQ3 (s3->data[6], s3->data[3], s3->data[4], s3->data[5]);
+	Eigen::Matrix3d oriM3 = oriQ3.matrix();
+	Eigen::Vector3d oriE3 = matrixToEuler(oriM3);
+	config3.bottomLeftCorner<3,1>() << -oriE3[2], -oriE3[1], oriE3[0];
+
+	//s4
+	Eigen::Quaternion <double> oriQ4 (s4->data[6], s4->data[3], s4->data[4], s4->data[5]);
+	Eigen::Matrix3d oriM4 = oriQ4.matrix();
+	Eigen::Vector3d oriE4 = matrixToEuler(oriM4);
+	config4.bottomLeftCorner<3,1>() << -oriE4[2], -oriE4[1], oriE4[0];
+
 
 	return true;
 }
@@ -92,33 +109,58 @@ void run() {
 		// Get the liberty data
 		Eigen::VectorXd config = VectorXd::Zero(6);
 		Eigen::VectorXd config2 = VectorXd::Zero(6);
+		Eigen::VectorXd config3 = VectorXd::Zero(6);
+		Eigen::VectorXd config4 = VectorXd::Zero(6);
 		bool success = false;
-		while(!success) success = getLiberty(config, config2);
+		while(!success) success = getLiberty(config, config2, config3, config4);
 		cout << "config: " << config.transpose() << endl;
 		
-		//sensor 1
+		//sensor 1 (palm)
 		Eigen::Matrix3d matrix = (Eigen::AngleAxis <double> (config(5), Eigen::Vector3d(0.0, 0.0, 1.0)) *
 					Eigen::AngleAxis <double> (config(4), Eigen::Vector3d(0.0, 1.0, 0.0)) *
 					Eigen::AngleAxis <double> (config(3), Eigen::Vector3d(1.0, 0.0, 0.0))).matrix();
 		cout << "matrix: \n" << matrix << "\n" << endl;
 	
-		//sensor 2
+		//sensor 2 (finger 1)
 		Eigen::Matrix3d matrix2 = (Eigen::AngleAxis <double> (config2(5), Eigen::Vector3d(0.0, 0.0, 1.0)) *
 					Eigen::AngleAxis <double> (config2(4), Eigen::Vector3d(0.0, 1.0, 0.0)) *
 					Eigen::AngleAxis <double> (config2(3), Eigen::Vector3d(1.0, 0.0, 0.0))).matrix();
 		cout << "matrix2: \n" << matrix2 << "\n" << endl;
 
+		//sensor 3 (finger 2)
+		Eigen::Matrix3d matrix3 = (Eigen::AngleAxis <double> (config3(5), Eigen::Vector3d(0.0, 0.0, 1.0)) *
+					Eigen::AngleAxis <double> (config3(4), Eigen::Vector3d(0.0, 1.0, 0.0)) *
+					Eigen::AngleAxis <double> (config3(3), Eigen::Vector3d(1.0, 0.0, 0.0))).matrix();
+		cout << "matrix3: \n" << matrix3 << "\n" << endl;
+
+
+		//sensor 4 (finger 3)
+		Eigen::Matrix3d matrix4 = (Eigen::AngleAxis <double> (config4(5), Eigen::Vector3d(0.0, 0.0, 1.0)) *
+					Eigen::AngleAxis <double> (config4(4), Eigen::Vector3d(0.0, 1.0, 0.0)) *
+					Eigen::AngleAxis <double> (config4(3), Eigen::Vector3d(1.0, 0.0, 0.0))).matrix();
+		cout << "matrix4: \n" << matrix4 << "\n" << endl;
+
 
 		//angle of sensor 1 relative to polhemus cube
 		Eigen::Vector3d localZ (matrix(0,2), matrix(1,2), matrix(2,2));
 		double angle = acos(localZ.dot(Eigen::Vector3d(0.0, 0.0, 1.0)));
-		cout << "angle: " << angle / M_PI * 180.0 << endl;
+		cout << "angle1: " << angle / M_PI * 180.0 << endl;
 
-		//angle of sensor 1 relative to sensor 2
+		//angle of sensor 1 relative to sensor 2, 3
 		Eigen::Vector3d sensor2Z (matrix2(0,2), matrix2(1,2), matrix2(2,2));
 		double angle2 = acos(sensor2Z.dot(Eigen::Vector3d(-matrix(0,2), -matrix(1,2), -matrix(2,2))));
 		cout << "angle2: " << angle2 / M_PI * 180.0 << endl;
+		//angle of sensor 1 relative to sensor 2, 3
+		Eigen::Vector3d sensor3Z (matrix3(0,2), matrix3(1,2), matrix3(2,2));
+		double angle3 = acos(sensor3Z.dot(Eigen::Vector3d(-matrix(0,2), -matrix(1,2), -matrix(2,2))));
+		cout << "angle3: " << angle3 / M_PI * 180.0 << endl;
 
+		//angle of sensor 1 relative to sensor 2, 3
+		Eigen::Vector3d sensor4Z (matrix4(0,2), matrix4(1,2), matrix4(2,2));
+		double angle4 = acos(sensor4Z.dot(Eigen::Vector3d(-matrix(0,2), -matrix(1,2), -matrix(2,2))));
+		cout << "angle4: " << angle4 / M_PI * 180.0 << endl;
+
+		usleep(1e5);
 		// Free buffers allocated during this cycle
 		aa_mem_region_release(&somaticContext.memreg);	
 	}

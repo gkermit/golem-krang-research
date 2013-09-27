@@ -13,7 +13,7 @@ endif()
 # Link to somatic, amino and ach
 # NOTE: Ideally we would like to 'find' these packages but for now, we assume they are either 
 # in /usr/lib or /usr/local/lib
-link_libraries(protobuf-c lapack blas amino ach somatic filter stdc++ ncurses)
+link_libraries(protobuf-c lapack blas amino ach somatic stdc++)
 
 # Include Eigen
 include_directories(/usr/local/include/eigen3)
