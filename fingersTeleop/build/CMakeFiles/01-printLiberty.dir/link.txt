@@ -1,1 +1,1 @@
-/usr/lib/ccache/c++   -g -std=gnu++0x    CMakeFiles/01-printLiberty.dir/exe/01-printLiberty.cpp.o  -o 01-printLiberty -rdynamic -lprotobuf-c -llapack -lblas -lamino -lach -lsomatic -lstdc++ 
+/usr/bin/c++   -g -std=gnu++0x    CMakeFiles/01-printLiberty.dir/exe/01-printLiberty.cpp.o  -o 01-printLiberty -rdynamic -lprotobuf-c -llapack -lblas -lamino -lach -lsomatic -lstdc++ 

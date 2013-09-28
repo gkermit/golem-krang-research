@@ -35,19 +35,25 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# Escaping for special characters.
+EQUALS = =
+
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gtracy/Desktop/research/fingersTeleop
+CMAKE_SOURCE_DIR = /home/gtracy/Documents/research/fingersTeleop
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gtracy/Desktop/research/fingersTeleop/build
+CMAKE_BINARY_DIR = /home/gtracy/Documents/research/fingersTeleop/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/usr/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -66,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Desktop/research/fingersTeleop/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gtracy/Documents/research/fingersTeleop/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -121,6 +127,32 @@ depend:
 	$(MAKE) -f CMakeFiles/01-printLiberty.run.dir/build.make CMakeFiles/01-printLiberty.run.dir/build
 .PHONY : 01-printLiberty.run/fast
 
+#=============================================================================
+# Target rules for targets named 02-libertyTwoSensors
+
+# Build rule for target.
+02-libertyTwoSensors: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 02-libertyTwoSensors
+.PHONY : 02-libertyTwoSensors
+
+# fast build rule for target.
+02-libertyTwoSensors/fast:
+	$(MAKE) -f CMakeFiles/02-libertyTwoSensors.dir/build.make CMakeFiles/02-libertyTwoSensors.dir/build
+.PHONY : 02-libertyTwoSensors/fast
+
+#=============================================================================
+# Target rules for targets named 02-libertyTwoSensors.run
+
+# Build rule for target.
+02-libertyTwoSensors.run: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 02-libertyTwoSensors.run
+.PHONY : 02-libertyTwoSensors.run
+
+# fast build rule for target.
+02-libertyTwoSensors.run/fast:
+	$(MAKE) -f CMakeFiles/02-libertyTwoSensors.run.dir/build.make CMakeFiles/02-libertyTwoSensors.run.dir/build
+.PHONY : 02-libertyTwoSensors.run/fast
+
 exe/01-printLiberty.o: exe/01-printLiberty.cpp.o
 .PHONY : exe/01-printLiberty.o
 
@@ -145,6 +177,30 @@ exe/01-printLiberty.cpp.s:
 	$(MAKE) -f CMakeFiles/01-printLiberty.dir/build.make CMakeFiles/01-printLiberty.dir/exe/01-printLiberty.cpp.s
 .PHONY : exe/01-printLiberty.cpp.s
 
+exe/02-libertyTwoSensors.o: exe/02-libertyTwoSensors.cpp.o
+.PHONY : exe/02-libertyTwoSensors.o
+
+# target to build an object file
+exe/02-libertyTwoSensors.cpp.o:
+	$(MAKE) -f CMakeFiles/02-libertyTwoSensors.dir/build.make CMakeFiles/02-libertyTwoSensors.dir/exe/02-libertyTwoSensors.cpp.o
+.PHONY : exe/02-libertyTwoSensors.cpp.o
+
+exe/02-libertyTwoSensors.i: exe/02-libertyTwoSensors.cpp.i
+.PHONY : exe/02-libertyTwoSensors.i
+
+# target to preprocess a source file
+exe/02-libertyTwoSensors.cpp.i:
+	$(MAKE) -f CMakeFiles/02-libertyTwoSensors.dir/build.make CMakeFiles/02-libertyTwoSensors.dir/exe/02-libertyTwoSensors.cpp.i
+.PHONY : exe/02-libertyTwoSensors.cpp.i
+
+exe/02-libertyTwoSensors.s: exe/02-libertyTwoSensors.cpp.s
+.PHONY : exe/02-libertyTwoSensors.s
+
+# target to generate assembly for a file
+exe/02-libertyTwoSensors.cpp.s:
+	$(MAKE) -f CMakeFiles/02-libertyTwoSensors.dir/build.make CMakeFiles/02-libertyTwoSensors.dir/exe/02-libertyTwoSensors.cpp.s
+.PHONY : exe/02-libertyTwoSensors.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -153,11 +209,16 @@ help:
 	@echo "... depend"
 	@echo "... 01-printLiberty"
 	@echo "... 01-printLiberty.run"
+	@echo "... 02-libertyTwoSensors"
+	@echo "... 02-libertyTwoSensors.run"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... exe/01-printLiberty.o"
 	@echo "... exe/01-printLiberty.i"
 	@echo "... exe/01-printLiberty.s"
+	@echo "... exe/02-libertyTwoSensors.o"
+	@echo "... exe/02-libertyTwoSensors.i"
+	@echo "... exe/02-libertyTwoSensors.s"
 .PHONY : help
 
 
